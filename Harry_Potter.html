@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 700px;
+            background-color: #222222;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"betweenness_centrality": 0.8388278388278388, "closeness_centrality": 0.9333333333333333, "degree_centrality": 0.9285714285714285, "font": {"color": "white"}, "id": "Harry", "label": "Harry", "shape": "dot", "size": 13}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.5, "degree_centrality": 0.07142857142857142, "font": {"color": "white"}, "id": "Petunia", "label": "Petunia", "shape": "dot", "size": 1}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.5185185185185185, "degree_centrality": 0.14285714285714285, "font": {"color": "white"}, "id": "Hedwig", "label": "Hedwig", "shape": "dot", "size": 2}, {"betweenness_centrality": 0.04212454212454213, "closeness_centrality": 0.6086956521739131, "degree_centrality": 0.42857142857142855, "font": {"color": "white"}, "id": "Hermione", "label": "Hermione", "shape": "dot", "size": 6}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.5, "degree_centrality": 0.07142857142857142, "font": {"color": "white"}, "id": "Albus", "label": "Albus", "shape": "dot", "size": 1}, {"betweenness_centrality": 0.020146520146520148, "closeness_centrality": 0.5833333333333334, "degree_centrality": 0.3571428571428571, "font": {"color": "white"}, "id": "Percy", "label": "Percy", "shape": "dot", "size": 5}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.5, "degree_centrality": 0.07142857142857142, "font": {"color": "white"}, "id": "Martin", "label": "Martin", "shape": "dot", "size": 1}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.5, "degree_centrality": 0.07142857142857142, "font": {"color": "white"}, "id": "Lucius", "label": "Lucius", "shape": "dot", "size": 1}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.5, "degree_centrality": 0.07142857142857142, "font": {"color": "white"}, "id": "Severus", "label": "Severus", "shape": "dot", "size": 1}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.5384615384615384, "degree_centrality": 0.21428571428571427, "font": {"color": "white"}, "id": "Neville", "label": "Neville", "shape": "dot", "size": 3}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.5384615384615384, "degree_centrality": 0.21428571428571427, "font": {"color": "white"}, "id": "Tom", "label": "Tom", "shape": "dot", "size": 3}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.5185185185185185, "degree_centrality": 0.14285714285714285, "font": {"color": "white"}, "id": "First", "label": "First", "shape": "dot", "size": 2}, {"betweenness_centrality": 0.14285714285714288, "closeness_centrality": 0.5384615384615384, "degree_centrality": 0.14285714285714285, "font": {"color": "white"}, "id": "Godric", "label": "Godric", "shape": "dot", "size": 2}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.5185185185185185, "degree_centrality": 0.14285714285714285, "font": {"color": "white"}, "id": "Penelope", "label": "Penelope", "shape": "dot", "size": 2}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.358974358974359, "degree_centrality": 0.07142857142857142, "font": {"color": "white"}, "id": "Helga", "label": "Helga", "shape": "dot", "size": 1}]);
+        edges = new vis.DataSet([{"from": "Harry", "label": 1, "to": "Petunia", "value": 33, "weight": 1}, {"from": "Harry", "label": 1, "to": "Hedwig", "value": 62, "weight": 1}, {"from": "Harry", "label": 1, "to": "Hermione", "value": 343, "weight": 1}, {"from": "Harry", "label": 1, "to": "Albus", "value": 19, "weight": 1}, {"from": "Harry", "label": 1, "to": "Percy", "value": 125, "weight": 1}, {"from": "Harry", "label": 1, "to": "Martin", "value": 6, "weight": 1}, {"from": "Harry", "label": 1, "to": "Lucius", "value": 25, "weight": 1}, {"from": "Harry", "label": 1, "to": "Severus", "value": 8, "weight": 1}, {"from": "Harry", "label": 1, "to": "Neville", "value": 48, "weight": 1}, {"from": "Harry", "label": 1, "to": "Tom", "value": 48, "weight": 1}, {"from": "Harry", "label": 1, "to": "First", "value": 6, "weight": 1}, {"from": "Harry", "label": 1, "to": "Godric", "value": 9, "weight": 1}, {"from": "Harry", "label": 1, "to": "Penelope", "value": 3, "weight": 1}, {"from": "Hedwig", "label": 1, "to": "Hermione", "value": 4, "weight": 1}, {"from": "Hermione", "label": 1, "to": "Percy", "value": 29, "weight": 1}, {"from": "Hermione", "label": 1, "to": "Neville", "value": 13, "weight": 1}, {"from": "Hermione", "label": 1, "to": "First", "value": 3, "weight": 1}, {"from": "Hermione", "label": 1, "to": "Tom", "value": 4, "weight": 1}, {"from": "Percy", "label": 1, "to": "Neville", "value": 4, "weight": 1}, {"from": "Percy", "label": 1, "to": "Tom", "value": 9, "weight": 1}, {"from": "Percy", "label": 1, "to": "Penelope", "value": 1, "weight": 1}, {"from": "Godric", "label": 1, "to": "Helga", "value": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
